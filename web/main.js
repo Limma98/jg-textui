@@ -4,16 +4,29 @@
   window.addEventListener("message", (evt) => {
     const { data } = evt;
 
-    if (!data) return false;
+    if (!data || !data.type) return;
 
-    if (data.type === "show") {
-      // If the string contains a key in square brackets (like [E]), then style it differently!
-      let str = data.text.replaceAll(/\[(.*?)\]/g, "<kbd>$1</kbd>");
-
-      textUI.style.left = "20px";
+    if (data.type === "show" && data.text) {
+      const str = data.text.replaceAll(/\[(.*?)\]/g, "<kbd>$1</kbd>");
       textUI.innerHTML = str;
+
+      if (data.color && /^#[0-9A-Fa-f]{6}$/.test(data.color)) {
+        textUI.style.setProperty("--border-color", data.color);
+        textUI.style.setProperty("--text-color", data.color);
+        textUI.style.setProperty("--kbd-border-color", data.color);
+      } else {
+        textUI.style.setProperty("--border-color", "#ff0000");
+        textUI.style.setProperty("--text-color", "#ff0000");
+        textUI.style.setProperty("--kbd-border-color", "#ff0000");
+      }
+
+      textUI.classList.add("active");
     } else if (data.type === "hide") {
-      textUI.style.left = "-100%";
+      textUI.classList.remove("active");
+      textUI.innerHTML = "";
+      textUI.style.setProperty("--border-color", "#ff0000");
+      textUI.style.setProperty("--text-color", "#ff0000");
+      textUI.style.setProperty("--kbd-border-color", "#ff0000");
     }
   });
 })();
