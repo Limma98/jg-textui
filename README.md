@@ -19,5 +19,8 @@ exports['jg-textui']:HideText()
 <img width="300" height="133" alt="Screenshot 2025-09-05 042427" src="https://github.com/user-attachments/assets/b4fedd1e-5091-45e4-ad7b-77de25d80f19" />
 
 
-https://github.com/user-attachments/assets/4c69544a-a39f-42f9-beb7-fe9b56843a9b
+
+
+
+https://github.com/user-attachments/assets/d705c3f1-aaf4-4157-8596-db55c79be71b
 
